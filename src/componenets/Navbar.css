@@ -1,0 +1,26 @@
+/* base styles */
+* {
+    margin: 0;
+    color: #333;
+  }
+  .navbar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 70%;
+    margin: 0 auto;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  .navbar img {
+    color: black;
+    max-width: 20vw;
+    max-height: 40vh;
+  }
+
+  .navbar h1 {
+    color: black;
+    margin-left: auto;
+    text-decoration: none;
+    padding: 6px;
+  }
+
