@@ -1,0 +1,51 @@
+.card-container {
+  border: 1px solid black;
+  width: 170px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 18px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: -8px 9px 16px -3px rgb(255, 255, 254);
+  background: #3c5aa6; 
+ }
+
+ .card-background {
+  height: 200px;
+  margin: 5px 5px 0 5px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 8%;
+  border-bottom-right-radius: 8%;
+  background-color: #c7a008;
+  z-index: 0;
+ }
+
+ .card-frame {
+  z-index: 1;
+  position: relative;
+  height: 108%;
+  max-width: 97%;
+  left: 1%;
+  top: 0.5%;
+  left: 1.2%;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .background-image img {
+  width: 8vw;
+  height: 12vh;
+}
+
+.name {
+  padding: 3px;
+  border-radius: 6px;
+  font-size: 1.5em;
+  font-family: cursive;
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}

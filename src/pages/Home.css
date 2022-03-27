@@ -1,9 +1,0 @@
-.cardArray{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    margin: auto;
-    row-gap: 2vh;
-    column-gap: 2vw;
-    max-width: 70%;
-}

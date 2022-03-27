@@ -1,37 +1,46 @@
 import React from 'react';
-import './Card.css';
+import '../style/Card.css';
 
 class Card extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.getAPIData = this.getAPIData.bind(this);
-        this.state = {imgSrc: []};
-    }
-    
-    async getAPIData() {
-      const url = this.props.url; 
-      const response = await fetch(url); 
-      const responseJSON = await response.json(); 
-
-      this.setState(
-          {
-            imgSrc: responseJSON.sprites.front_default
-          }
-      );
+    this.getAPIData = this.getAPIData.bind(this);
+    this.state = { imgSrc: [] };
   }
-    componentDidMount() {
-        this.getAPIData();
-    }
-    
-    render () {
-        return (
-          <div className="card">
-            {this.props.name} <br />
-            <img src={this.state.imgSrc} alt="" /> 
+
+  async getAPIData() {
+    const url = this.props.url;
+    const response = await fetch(url);
+    const responseJSON = await response.json();
+
+    this.setState(
+      {
+        imgSrc: responseJSON.sprites.front_default
+      }
+    );
+  }
+  componentDidMount() {
+    this.getAPIData();
+  }
+
+  render() {
+    return (
+      <div className="card-container">
+        <div className="card-background">
+          <div className="card-frame">
+            <div className="background-image">
+              <img src={this.state.imgSrc} alt="" />
+            </div>
+
+            <div className="name">
+              {this.props.name}
+            </div>
           </div>
-        );
-    }
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Card;

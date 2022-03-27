@@ -1,13 +1,21 @@
 import './App.css';
 import Navbar from './componenets/Navbar';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
+import SingleCard from './pages/SingleCard';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
         <Navbar />
-        <Home />
-    </div>
+        <Routes>
+          <Route exact path="/" element={<Home className='cardsBox' />} />
+          <Route exact path="/:id" element={<SingleCard />} />
+        </Routes>
+      </div>
+    </Router>
+
   );
 }
 
