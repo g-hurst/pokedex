@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router,
-    Link,
-    Route,
-    Routes,
-    useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function NameHook() {
     const { id } = useParams();
@@ -27,7 +21,7 @@ class SingleCard extends Component {
     render() {
         return (
             <div>
-                <a>the path is {this.props.id}</a>  
+                <a>the path is here: {this.props.id}</a>  
             </div>
         );
     }
