@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../componenets/Card';
+import PokiApiHook from '../PokiApiHook';
 import '../style/Home.css';
 
 class Home extends React.Component {
@@ -12,8 +13,7 @@ class Home extends React.Component {
 
     async getAPIData() {
         const url = `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${this.state.offset}`; 
-        const response = await fetch(url); 
-        const responseJSON = await response.json(); 
+        const responseJSON = await PokiApiHook(url);
 
         const responsePokemon = responseJSON.results.map((item) => (
             <div className="card-link" key={item.name}>

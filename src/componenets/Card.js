@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/Card.css';
+import loading from '../images/loading.png'
 
 class Card extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Card extends React.Component {
         <div className="card-background">
           <div className="card-frame">
             <div className="background-image">
-              <img src={this.state.imgSrc} alt="" />
+              <img src={this.state.imgSrc} alt={loading} />
             </div>
 
             <div className="name">

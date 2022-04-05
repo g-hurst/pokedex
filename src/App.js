@@ -14,6 +14,9 @@ function App() {
           <Route exact path="/" element={<Home className='cardsBox' />} />
           <Route exact path="/:id" element={<SingleCard />} />
         </Routes>
+        <div className="footer">
+          Created by Garrett Hurst for Purdue University's Software Saturdays
+        </div>
       </div>
     </Router>
 
