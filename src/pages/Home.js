@@ -6,21 +6,18 @@ import '../style/Home.css';
 class Home extends React.Component {
     constructor(props) {
         super(props)
-
-        this.getAPIData = this.getAPIData.bind(this);
+        this.handleResponse = this.handleResponse.bind(this);
+        this.handleError = this.handleError.bind(this);
         this.state = {pokemon: [], offset: 0};
     }
 
-    async getAPIData() {
-        const url = `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${this.state.offset}`; 
-        const responseJSON = await PokiApiHook(url);
-
-        const responsePokemon = responseJSON.results.map((item) => (
+    handleResponse(response){
+        console.log(response)
+        const responsePokemon = response.results.map((item) => (
             <div className="card-link" key={item.name}>
                 <a href={`/${item.name}`}><Card name={item.name} url={item.url}/></a>
             </div>
         ));
-
         this.setState((prevState) =>
             ({                
                 pokemon: prevState.pokemon.concat(responsePokemon),
@@ -29,8 +26,20 @@ class Home extends React.Component {
         );
     }
 
+    handleError(error) {
+        console.log(error);
+        this.setState(
+            {
+                pokiStats:<h1>Network Error! Failed to load please try again.</h1>
+            }
+        );
+    }
+
     componentDidMount() {
-        this.getAPIData();
+        const url = `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${this.state.offset}`;
+        PokiApiHook(url)
+        .then(this.handleResponse)
+        .catch(this.handleError)
     }
 
     render () {

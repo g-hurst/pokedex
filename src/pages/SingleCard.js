@@ -19,26 +19,37 @@ function attachName(Component) {
 class SingleCard extends Component {
     constructor(props) {
         super(props);
-        this.getData = this.getData.bind(this)
+        this.handleResponse = this.handleResponse.bind(this);
+        this.handleError = this.handleError.bind(this);
         this.state = {pokiStats: null}
     }
-    
-    async getData() {
-        const url = `https://pokeapi.co/api/v2/pokemon/${this.props.id}`;
-        const pokiResponse = await PokiApiHook(url);
+
+    handleResponse(response){
+        console.log(response)
         this.setState(() =>   
             ({
-                pokiStats: pokiResponse
+                pokiStats: response
             }));
     }
 
+    handleError(error) {
+        console.log(error);
+        this.setState(
+            {
+                pokiStats:<h1>Network Error! Failed to load please try again.</h1>
+            }
+        );
+    }
+
     componentDidMount() {
-        this.getData();
+        const url = `https://pokeapi.co/api/v2/pokemon/${this.props.id}`;
+        PokiApiHook(url)
+        .then(this.handleResponse)
+        .catch(this.handleError)
     }
 
     render() {
         const url = `https://pokeapi.co/api/v2/pokemon/${this.props.id}`;
-        console.log(this.state.pokiStats)
         return (
             <div className='SingleCardContent'>
                 <div className="SingleCardCard">
