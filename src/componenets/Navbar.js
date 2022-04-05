@@ -6,8 +6,8 @@ import loading from '../images/loading.png'
 const Navbar = () => {
   return (
     <nav className="navbar">
-     <a href="/"><img src={logo} alt={loading}/></a> 
-        <h1>Gotta Catch Em All</h1>
+      <a href="/"><img src={logo} alt={loading} /></a>
+      <h1>Gotta Catch Em All</h1>
     </nav>
   );
 }

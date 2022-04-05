@@ -1,28 +1,36 @@
 import React from 'react';
+import PokiApiHook from '../PokiApiHook';
 import '../style/Card.css';
-import loading from '../images/loading.png'
 
 class Card extends React.Component {
   constructor(props) {
     super(props)
-
-    this.getAPIData = this.getAPIData.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
+    this.handleError = this.handleError.bind(this);
     this.state = { imgSrc: [] };
   }
 
-  async getAPIData() {
-    const url = this.props.url;
-    const response = await fetch(url);
-    const responseJSON = await response.json();
-
+  handleResponse(response) {
     this.setState(
       {
-        imgSrc: responseJSON.sprites.front_default
+        imgSrc: response.sprites.front_default
       }
     );
   }
+
+  handleError(error) {
+    console.log(error);
+    this.setState(
+      {
+        pokiStats: <h1>Network Error! Failed to load please try again.</h1>
+      }
+    );
+  }
+
   componentDidMount() {
-    this.getAPIData();
+    PokiApiHook(this.props.url)
+      .then(this.handleResponse)
+      .catch(this.handleError)
   }
 
   render() {
@@ -31,9 +39,8 @@ class Card extends React.Component {
         <div className="card-background">
           <div className="card-frame">
             <div className="background-image">
-              <img src={this.state.imgSrc} alt={loading} />
+              <img src={this.state.imgSrc} alt="" />
             </div>
-
             <div className="name">
               {this.props.name}
             </div>

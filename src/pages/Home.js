@@ -8,21 +8,20 @@ class Home extends React.Component {
         super(props)
         this.handleResponse = this.handleResponse.bind(this);
         this.handleError = this.handleError.bind(this);
-        this.state = {pokemon: [], offset: 0};
+        this.state = { pokemon: [], offset: 0 };
     }
 
-    handleResponse(response){
-        console.log(response)
+    handleResponse(response) {
         const responsePokemon = response.results.map((item) => (
             <div className="card-link" key={item.name}>
-                <a href={`/${item.name}`}><Card name={item.name} url={item.url}/></a>
+                <a href={`/${item.name}`}><Card name={item.name} url={item.url} /></a>
             </div>
         ));
         this.setState((prevState) =>
-            ({                
-                pokemon: prevState.pokemon.concat(responsePokemon),
-                offset: prevState.offset + 25
-            })
+        ({
+            pokemon: prevState.pokemon.concat(responsePokemon),
+            offset: prevState.offset + 25
+        })
         );
     }
 
@@ -30,7 +29,7 @@ class Home extends React.Component {
         console.log(error);
         this.setState(
             {
-                pokiStats:<h1>Network Error! Failed to load please try again.</h1>
+                pokiStats: <h1>Network Error! Failed to load please try again.</h1>
             }
         );
     }
@@ -38,12 +37,12 @@ class Home extends React.Component {
     componentDidMount() {
         const url = `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${this.state.offset}`;
         PokiApiHook(url)
-        .then(this.handleResponse)
-        .catch(this.handleError)
+            .then(this.handleResponse)
+            .catch(this.handleError)
     }
 
-    render () {
-        const someJSX = 
+    render() {
+        const someJSX =
             <div>
                 <div className='cardArray'>
                     {this.state.pokemon}

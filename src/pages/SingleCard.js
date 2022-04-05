@@ -11,32 +11,32 @@ function NameHook() {
 
 function attachName(Component) {
     return function WrappedComponent(props) {
-      const id = NameHook();
-      return <Component {...props} id={id} />;
+        const id = NameHook();
+        return <Component {...props} id={id} />;
     }
-  }
+}
 
 class SingleCard extends Component {
     constructor(props) {
         super(props);
         this.handleResponse = this.handleResponse.bind(this);
         this.handleError = this.handleError.bind(this);
-        this.state = {pokiStats: null}
+        this.state = { pokiStats: null }
     }
 
-    handleResponse(response){
+    handleResponse(response) {
         console.log(response)
-        this.setState(() =>   
-            ({
-                pokiStats: response
-            }));
+        this.setState(() =>
+        ({
+            pokiStats: response
+        }));
     }
 
     handleError(error) {
         console.log(error);
         this.setState(
             {
-                pokiStats:<h1>Network Error! Failed to load please try again.</h1>
+                pokiStats: <h1>Network Error! Failed to load please try again.</h1>
             }
         );
     }
@@ -44,8 +44,8 @@ class SingleCard extends Component {
     componentDidMount() {
         const url = `https://pokeapi.co/api/v2/pokemon/${this.props.id}`;
         PokiApiHook(url)
-        .then(this.handleResponse)
-        .catch(this.handleError)
+            .then(this.handleResponse)
+            .catch(this.handleError)
     }
 
     render() {
@@ -53,13 +53,13 @@ class SingleCard extends Component {
         return (
             <div className='SingleCardContent'>
                 <div className="SingleCardCard">
-                    <Card url={url} name={this.props.id}/>
+                    <Card url={url} name={this.props.id} />
                 </div>
                 <div className="stats">
-                    <p>Name: {(this.state.pokiStats !== null)? this.state.pokiStats.name: 'Loading'}</p>
-                    <p>Types: {(this.state.pokiStats !== null)? this.state.pokiStats.types[0].type.name: 'loading'}</p>
-                    <p>Height: {(this.state.pokiStats !== null)? this.state.pokiStats.height: 'loading'}</p>
-                    <p>Weight: {(this.state.pokiStats !== null)? this.state.pokiStats.weight: 'loading'}</p>
+                    <p>Name: {(this.state.pokiStats !== null) ? this.state.pokiStats.name : 'Loading'}</p>
+                    <p>Types: {(this.state.pokiStats !== null) ? this.state.pokiStats.types[0].type.name : 'loading'}</p>
+                    <p>Height: {(this.state.pokiStats !== null) ? this.state.pokiStats.height : 'loading'}</p>
+                    <p>Weight: {(this.state.pokiStats !== null) ? this.state.pokiStats.weight : 'loading'}</p>
                 </div>
             </div>
         );
