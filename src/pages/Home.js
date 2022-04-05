@@ -41,6 +41,13 @@ class Home extends React.Component {
             .catch(this.handleError)
     }
 
+    handleClick = () => {
+        const url = `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${this.state.offset}`;
+        PokiApiHook(url)
+            .then(this.handleResponse)
+            .catch(this.handleError)
+    }
+
     render() {
         const someJSX =
             <div>
@@ -48,7 +55,7 @@ class Home extends React.Component {
                     {this.state.pokemon}
                 </div>
                 <br />
-                <button onClick={this.getAPIData} className='load-button'>click to load more</button>
+                <button onClick={this.handleClick} className='load-button'>click to load more</button>
             </div>;
 
         return someJSX;
